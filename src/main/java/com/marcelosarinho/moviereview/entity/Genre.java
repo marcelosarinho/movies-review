@@ -3,24 +3,21 @@ package com.marcelosarinho.moviereview.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "movies")
-@Data
+@Table(name = "genres")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Movie {
+public class Genre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Título é obrigatório!")
-    private String title;
-    private Integer year;
+    @NotBlank(message = "Nome do gênero é obrigatório!")
+    private String name;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
