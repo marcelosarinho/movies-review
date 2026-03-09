@@ -1,6 +1,8 @@
 package com.marcelosarinho.moviereview.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,17 +10,21 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "movies")
+@Table(name = "users")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Movie {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String title;
-    private Integer year;
+    @NotBlank(message = "Nome é obrigatório!")
+    private String name;
+
+    @Email(message = "Email deve ter formato válido!")
+    @NotBlank(message = "Email é obrigatório!")
+    private String email;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
