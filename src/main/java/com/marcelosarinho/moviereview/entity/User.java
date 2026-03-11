@@ -26,6 +26,8 @@ public class User {
     @NotBlank(message = "Email é obrigatório!")
     private String email;
 
+    private String password;
+
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
