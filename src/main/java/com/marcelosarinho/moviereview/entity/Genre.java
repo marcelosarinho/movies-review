@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "genres")
@@ -18,6 +20,9 @@ public class Genre {
 
     @NotBlank(message = "Nome do gênero é obrigatório!")
     private String name;
+
+    @ManyToMany(mappedBy = "genres")
+    private Set<Movie> movies = new HashSet<>();
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
