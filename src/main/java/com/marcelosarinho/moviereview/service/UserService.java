@@ -3,6 +3,7 @@ package com.marcelosarinho.moviereview.service;
 import com.marcelosarinho.moviereview.entity.User;
 import com.marcelosarinho.moviereview.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +14,9 @@ public class UserService {
     @Autowired
     private UserRepository repository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     public List<User> findAll() {
         return repository.findAll();
     }
@@ -22,6 +26,8 @@ public class UserService {
     }
 
     public User insert(User obj) {
+        obj.setPassword(passwordEncoder.encode(obj.getPassword()));
+
         return repository.save(obj);
     }
 
