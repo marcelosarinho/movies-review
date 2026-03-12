@@ -2,19 +2,18 @@ package com.marcelosarinho.moviereview.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
 @Table(name = "movies")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,6 +31,14 @@ public class Movie {
     )
     private Set<Genre> genres = new HashSet<>();
 
+    public Movie(Long id, String title, Integer releaseYear, LocalDateTime createdAt, LocalDateTime updatedAt) {
+        this.id = id;
+        this.title = title;
+        this.releaseYear = releaseYear;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
@@ -47,5 +54,28 @@ public class Movie {
     @PreUpdate
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Movie movie = (Movie) o;
+        return Objects.equals(id, movie.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                ", releaseYear=" + releaseYear +
+                ", title='" + title + '\'' +
+                ", id=" + id +
+                '}';
     }
 }
