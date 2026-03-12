@@ -2,6 +2,7 @@ package com.marcelosarinho.moviereview.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
                 @UniqueConstraint(columnNames = {"user_id", "movie_id"})
         }
 )
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Watchlist {
