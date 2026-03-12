@@ -2,9 +2,7 @@ package com.marcelosarinho.moviereview.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -12,9 +10,9 @@ import java.util.Set;
 
 @Entity
 @Table(name = "genres")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class Genre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,6 +30,13 @@ public class Genre {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
+    public Genre(Long id, String name, LocalDateTime createdAt, LocalDateTime updatedAt) {
+        this.id = id;
+        this.name = name;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
     @PrePersist
     protected void onCreate() {
         createdAt = LocalDateTime.now();
@@ -42,4 +47,6 @@ public class Genre {
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();
     }
+
+
 }
