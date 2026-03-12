@@ -5,9 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "movies")
@@ -30,6 +28,9 @@ public class Movie {
             inverseJoinColumns = @JoinColumn(name = "genre_id")
     )
     private Set<Genre> genres = new HashSet<>();
+
+    @OneToMany(mappedBy = "movie")
+    private List<Review> reviews = new ArrayList<>();
 
     public Movie(Long id, String title, Integer releaseYear, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;

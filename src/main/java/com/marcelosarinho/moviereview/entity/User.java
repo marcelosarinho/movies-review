@@ -6,9 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "users")
@@ -31,7 +29,7 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "user")
-    private Set<Review> reviews = new HashSet<>();
+    private List<Review> reviews = new ArrayList<>();
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
