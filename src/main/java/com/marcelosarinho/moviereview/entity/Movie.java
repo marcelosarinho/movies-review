@@ -22,7 +22,7 @@ public class Movie {
 
     @NotBlank(message = "Título é obrigatório!")
     private String title;
-    private Integer year;
+    private Integer releaseYear;
 
     @ManyToMany
     @JoinTable(
