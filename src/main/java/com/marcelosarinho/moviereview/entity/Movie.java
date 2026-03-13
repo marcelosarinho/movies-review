@@ -30,7 +30,10 @@ public class Movie {
     private Set<Genre> genres = new HashSet<>();
 
     @OneToMany(mappedBy = "movie")
-    private List<Review> reviews = new ArrayList<>();
+    private Set<Review> reviews = new HashSet<>();
+
+    @OneToMany(mappedBy = "movie")
+    private Set<Watchlist> watchlist = new HashSet<>();
 
     public Movie(Long id, String title, Integer releaseYear, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
