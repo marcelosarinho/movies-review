@@ -29,7 +29,10 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "user")
-    private List<Review> reviews = new ArrayList<>();
+    private Set<Review> reviews = new HashSet<>();
+
+    @OneToMany(mappedBy = "user")
+    private Set<Watchlist> watchlist = new HashSet<>();
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
@@ -66,7 +69,6 @@ public class User {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
                 '}';
