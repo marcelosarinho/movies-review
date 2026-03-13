@@ -35,7 +35,7 @@ public class GenreService {
         repository.deleteById(id);
     }
 
-    public void updateData(Genre entity, Genre genre) {
+    private void updateData(Genre entity, Genre genre) {
         entity.setName(genre.getName());
     }
 }
