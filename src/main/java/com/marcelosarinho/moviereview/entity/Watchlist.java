@@ -17,7 +17,6 @@ import java.util.Objects;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class Watchlist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,6 +37,15 @@ public class Watchlist {
 
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    public Watchlist(Long id, Movie movie, User user, Interest interest, LocalDateTime createdAt, LocalDateTime updatedAt) {
+        this.id = id;
+        this.movie = movie;
+        this.user = user;
+        setInterest(interest);
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
 
     private Interest getInterest() {
         return Interest.valueOf(interest);
