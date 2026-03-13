@@ -4,7 +4,7 @@ import com.marcelosarinho.moviereview.entity.enums.Interest;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.Objects;
 
 @Entity
@@ -33,12 +33,12 @@ public class Watchlist {
     private Integer interest;
 
     @Column(name = "created_at")
-    private LocalDateTime createdAt;
+    private Instant createdAt;
 
     @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
+    private Instant updatedAt;
 
-    public Watchlist(Long id, Movie movie, User user, Interest interest, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public Watchlist(Long id, Movie movie, User user, Interest interest, Instant createdAt, Instant updatedAt) {
         this.id = id;
         this.movie = movie;
         this.user = user;
@@ -59,13 +59,13 @@ public class Watchlist {
 
     @PrePersist
     protected void onCreate() {
-        createdAt = LocalDateTime.now();
-        updatedAt = LocalDateTime.now();
+        createdAt = Instant.now();
+        updatedAt = Instant.now();
     }
 
     @PreUpdate
     protected void onUpdate() {
-        updatedAt = LocalDateTime.now();
+        updatedAt = Instant.now();
     }
 
     @Override

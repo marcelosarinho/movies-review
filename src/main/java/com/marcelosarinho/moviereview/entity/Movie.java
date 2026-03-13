@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.*;
 
 @Entity
@@ -35,7 +35,7 @@ public class Movie {
     @OneToMany(mappedBy = "movie")
     private Set<Watchlist> watchlist = new HashSet<>();
 
-    public Movie(Long id, String title, Integer releaseYear, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public Movie(Long id, String title, Integer releaseYear, Instant createdAt, Instant updatedAt) {
         this.id = id;
         this.title = title;
         this.releaseYear = releaseYear;
@@ -44,20 +44,20 @@ public class Movie {
     }
 
     @Column(name = "created_at")
-    private LocalDateTime createdAt;
+    private Instant createdAt;
 
     @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
+    private Instant updatedAt;
 
     @PrePersist
     protected void onCreate() {
-        createdAt = LocalDateTime.now();
-        updatedAt = LocalDateTime.now();
+        createdAt = Instant.now();
+        updatedAt = Instant.now();
     }
 
     @PreUpdate
     protected void onUpdate() {
-        updatedAt = LocalDateTime.now();
+        updatedAt = Instant.now();
     }
 
     @Override
