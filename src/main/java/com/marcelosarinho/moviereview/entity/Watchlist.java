@@ -1,5 +1,6 @@
 package com.marcelosarinho.moviereview.entity;
 
+import com.marcelosarinho.moviereview.entity.enums.Interest;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -30,11 +31,23 @@ public class Watchlist {
     @JoinColumn(name = "user_id")
     private User user;
 
+    private Integer interest;
+
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    private Interest getInterest() {
+        return Interest.valueOf(interest);
+    }
+
+    private void setInterest(Interest interest) {
+        if (interest != null) {
+            this.interest = interest.getCode();
+        }
+    }
 
     @PrePersist
     protected void onCreate() {
