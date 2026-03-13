@@ -22,6 +22,14 @@ public class ReviewService {
         return repository.findById(id);
     }
 
+    public List<Review> findByUserId(Long id) {
+        return repository.findByUserId(id);
+    }
+
+    public List<Review> findByMovieId(Long id) {
+        return repository.findByMovieId(id);
+    }
+
     public Review insert(Review obj) {
         return repository.save(obj);
     }
