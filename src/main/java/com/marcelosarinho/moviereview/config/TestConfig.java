@@ -91,8 +91,8 @@ public class TestConfig implements CommandLineRunner {
         Review r10 = new Review(null, 4, "Grande épico histórico.", u1, m10, Instant.now(), Instant.now());
         Review r11 = new Review(null, 4, "Atmosfera muito boa.", u2, m1, Instant.now(), Instant.now());
         Review r12 = new Review(null, 2, "História meio fraca.", u3, m2, Instant.now(), Instant.now());
-        Review r13 = new Review(null, 4, "", u1, m3, Instant.now(), Instant.now());
-        Review r14 = new Review(null, 5, "", u2, m7, Instant.now(), Instant.now());
+        Review r13 = new Review(null, 4, null, u1, m3, Instant.now(), Instant.now());
+        Review r14 = new Review(null, 5, null, u2, m7, Instant.now(), Instant.now());
 
         reviewRepository.saveAll(Arrays.asList(r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12, r13, r14));
 
