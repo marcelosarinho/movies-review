@@ -13,5 +13,6 @@ public class MovieDTO {
 
     @NotBlank(message = "Título é obrigatório!")
     private String title;
+
     private Integer releaseYear;
 }

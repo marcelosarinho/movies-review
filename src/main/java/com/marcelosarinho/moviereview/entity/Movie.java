@@ -19,6 +19,7 @@ public class Movie {
 
     @NotBlank(message = "Título é obrigatório!")
     private String title;
+
     private Integer releaseYear;
 
     @ManyToMany
