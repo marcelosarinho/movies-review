@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(name = "/genres")
+@RequestMapping(value = "/genres")
 public class GenreController {
     @Autowired
     private GenreService service;

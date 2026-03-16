@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(name = "/watchlists")
+@RequestMapping(value = "/watchlists")
 public class WatchlistController {
     @Autowired
     private WatchlistService service;
