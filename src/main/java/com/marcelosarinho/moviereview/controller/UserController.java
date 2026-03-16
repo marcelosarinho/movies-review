@@ -1,6 +1,8 @@
 package com.marcelosarinho.moviereview.controller;
 
+import com.marcelosarinho.moviereview.entity.Review;
 import com.marcelosarinho.moviereview.entity.User;
+import com.marcelosarinho.moviereview.service.ReviewService;
 import com.marcelosarinho.moviereview.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +20,19 @@ public class UserController {
     @Autowired
     private UserService service;
 
+    @Autowired
+    private ReviewService reviewService;
+
     @GetMapping
     public ResponseEntity<List<User>> findAll() {
-        List<User> users =  service.findAll();
+        List<User> users = service.findAll();
         return ResponseEntity.ok().body(users);
+    }
+
+    @GetMapping(value = "/{id}/reviews")
+    public ResponseEntity<List<Review>> findReviews(@PathVariable Long id) {
+        List<Review> reviews = reviewService.findByUserId(id);
+        return ResponseEntity.ok().body(reviews);
     }
 
     @GetMapping(value = "/{id}")
