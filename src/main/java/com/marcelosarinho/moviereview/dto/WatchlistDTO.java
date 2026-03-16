@@ -5,12 +5,20 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.Instant;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class WatchlistDTO {
     private Long id;
+    private Integer rating;
+    private String comment;
+
     private Long userId;
     private Long movieId;
     private Interest interest;
+
+    private Instant createdAt;
+    private Instant updatedAt;
 }
