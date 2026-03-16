@@ -3,6 +3,7 @@ package com.marcelosarinho.moviereview.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.time.Instant;
@@ -19,6 +20,7 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     @Min(value = 1, message = "A avaliação mínima é 1!")
     @Max(value = 5, message = "A avaliação máxima é 5!")
     private Integer rating;
