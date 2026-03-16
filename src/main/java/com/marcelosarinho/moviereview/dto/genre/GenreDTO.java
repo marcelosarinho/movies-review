@@ -1,6 +1,5 @@
-package com.marcelosarinho.moviereview.dto;
+package com.marcelosarinho.moviereview.dto.genre;
 
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;

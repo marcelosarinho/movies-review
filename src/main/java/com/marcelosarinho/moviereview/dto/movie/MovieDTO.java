@@ -1,4 +1,4 @@
-package com.marcelosarinho.moviereview.dto;
+package com.marcelosarinho.moviereview.dto.movie;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;

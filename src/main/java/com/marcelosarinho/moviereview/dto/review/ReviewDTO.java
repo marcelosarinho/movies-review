@@ -1,4 +1,4 @@
-package com.marcelosarinho.moviereview.dto;
+package com.marcelosarinho.moviereview.dto.review;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;

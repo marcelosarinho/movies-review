@@ -1,4 +1,4 @@
-package com.marcelosarinho.moviereview.dto;
+package com.marcelosarinho.moviereview.dto.watchlist;
 
 import com.marcelosarinho.moviereview.entity.enums.Interest;
 import lombok.AllArgsConstructor;
