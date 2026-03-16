@@ -1,7 +1,9 @@
 package com.marcelosarinho.moviereview.controller;
 
 import com.marcelosarinho.moviereview.entity.Movie;
+import com.marcelosarinho.moviereview.entity.Review;
 import com.marcelosarinho.moviereview.service.MovieService;
+import com.marcelosarinho.moviereview.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,10 +18,19 @@ public class MovieController {
     @Autowired
     private MovieService service;
 
+    @Autowired
+    private ReviewService reviewService;
+
     @GetMapping
     public ResponseEntity<List<Movie>> findAll() {
         List<Movie> movies = service.findAll();
         return ResponseEntity.ok().body(movies);
+    }
+
+    @GetMapping(value = "/{id}/reviews")
+    public ResponseEntity<List<Review>> findByMovie(@PathVariable Long id) {
+        List<Review> reviews = reviewService.findByMovieId(id);
+        return ResponseEntity.ok().body(reviews);
     }
 
     @GetMapping(value = "/{id}")
