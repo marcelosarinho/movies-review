@@ -2,8 +2,10 @@ package com.marcelosarinho.moviereview.controller;
 
 import com.marcelosarinho.moviereview.entity.Review;
 import com.marcelosarinho.moviereview.entity.User;
+import com.marcelosarinho.moviereview.entity.Watchlist;
 import com.marcelosarinho.moviereview.service.ReviewService;
 import com.marcelosarinho.moviereview.service.UserService;
+import com.marcelosarinho.moviereview.service.WatchlistService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +25,9 @@ public class UserController {
     @Autowired
     private ReviewService reviewService;
 
+    @Autowired
+    private WatchlistService watchlistService;
+
     @GetMapping
     public ResponseEntity<List<User>> findAll() {
         List<User> users = service.findAll();
@@ -33,6 +38,12 @@ public class UserController {
     public ResponseEntity<List<Review>> findReviews(@PathVariable Long id) {
         List<Review> reviews = reviewService.findByUserId(id);
         return ResponseEntity.ok().body(reviews);
+    }
+
+    @GetMapping(value = "/{id}/watchlists")
+    public ResponseEntity<List<Watchlist>> findWatchlists(@PathVariable Long id) {
+        List<Watchlist> watchlists = watchlistService.findByUserId(id);
+        return ResponseEntity.ok().body(watchlists);
     }
 
     @GetMapping(value = "/{id}")
