@@ -25,6 +25,7 @@ public class User {
     @NotBlank(message = "Email é obrigatório!")
     private String email;
 
+    @NotBlank(message = "Senha é obrigatória!")
     private String password;
 
     @OneToMany(mappedBy = "user")

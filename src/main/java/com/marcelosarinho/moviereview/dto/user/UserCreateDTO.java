@@ -1,21 +1,18 @@
-package com.marcelosarinho.moviereview.dto;
+package com.marcelosarinho.moviereview.dto.user;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class UserDTO {
-    private Long id;
-
+public class UserCreateDTO {
     @NotBlank(message = "Nome é obrigatório!")
     private String name;
 
     @Email(message = "Email deve ter formato válido!")
     @NotBlank(message = "Email é obrigatório!")
     private String email;
+
+    @NotBlank(message = "Senha é obrigatória!")
+    private String password;
 }
