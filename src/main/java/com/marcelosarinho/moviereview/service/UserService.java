@@ -1,6 +1,8 @@
 package com.marcelosarinho.moviereview.service;
 
+import com.marcelosarinho.moviereview.entity.Review;
 import com.marcelosarinho.moviereview.entity.User;
+import com.marcelosarinho.moviereview.repository.ReviewRepository;
 import com.marcelosarinho.moviereview.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,6 +17,9 @@ public class UserService {
     private UserRepository repository;
 
     @Autowired
+    private ReviewRepository reviewRepository;
+
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
     public List<User> findAll() {
@@ -23,6 +28,10 @@ public class UserService {
 
     public Optional<User> findById(Long id) {
         return repository.findById(id);
+    }
+
+    public List<Review> findReviewsByUserId(Long id) {
+        return reviewRepository.findByUserId(id);
     }
 
     public User insert(User obj) {
