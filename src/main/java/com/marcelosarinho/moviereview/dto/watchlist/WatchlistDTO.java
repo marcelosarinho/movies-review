@@ -12,13 +12,9 @@ import java.time.Instant;
 @AllArgsConstructor
 public class WatchlistDTO {
     private Long id;
-    private Integer rating;
-    private String comment;
-
     private Long userId;
     private Long movieId;
     private Interest interest;
-
     private Instant createdAt;
     private Instant updatedAt;
 }
