@@ -1,6 +1,8 @@
 package com.marcelosarinho.moviereview.service;
 
+import com.marcelosarinho.moviereview.dto.genre.GenreDTO;
 import com.marcelosarinho.moviereview.entity.Genre;
+import com.marcelosarinho.moviereview.mapper.GenreMapper;
 import com.marcelosarinho.moviereview.repository.GenreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,29 +15,36 @@ public class GenreService {
     @Autowired
     private GenreRepository repository;
 
-    public List<Genre> findAll() {
-        return repository.findAll();
+    @Autowired
+    private GenreMapper mapper;
+
+    public List<GenreDTO> findAll() {
+        return mapper.toGenreDTOList(repository.findAll());
     }
 
-    public Optional<Genre> findById(Long id) {
-        return repository.findById(id);
+    public GenreDTO findById(Long id) {
+        Genre genre = repository.findById(id).orElseThrow(() -> new RuntimeException("Erro ao encontrar gênero"));
+        return mapper.toGenreDTO(genre);
     }
 
-    public Genre insert(Genre obj) {
-        return repository.save(obj);
+    public GenreDTO insert(GenreDTO dto) {
+        Genre entity = mapper.toGenreEntity(dto);
+        entity = repository.save(entity);
+        return mapper.toGenreDTO(entity);
     }
 
-    public Genre update(Long id, Genre obj) {
+    public GenreDTO update(Long id, GenreDTO dto) {
         Genre entity = repository.getReferenceById(id);
-        updateData(entity, obj);
-        return repository.save(entity);
+        updateData(entity, dto);
+        entity = repository.save(entity);
+        return mapper.toGenreDTO(entity);
     }
 
     public void delete(Long id) {
         repository.deleteById(id);
     }
 
-    private void updateData(Genre entity, Genre genre) {
-        entity.setName(genre.getName());
+    private void updateData(Genre entity, GenreDTO dto) {
+        entity.setName(dto.getName());
     }
 }

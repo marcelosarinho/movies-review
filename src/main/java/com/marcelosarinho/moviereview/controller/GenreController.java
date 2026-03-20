@@ -1,5 +1,6 @@
 package com.marcelosarinho.moviereview.controller;
 
+import com.marcelosarinho.moviereview.dto.genre.GenreDTO;
 import com.marcelosarinho.moviereview.entity.Genre;
 import com.marcelosarinho.moviereview.service.GenreService;
 import jakarta.validation.Valid;
@@ -18,25 +19,25 @@ public class GenreController {
     private GenreService service;
 
     @GetMapping
-    public ResponseEntity<List<Genre>> findAll() {
-        List<Genre> genres = service.findAll();
+    public ResponseEntity<List<GenreDTO>> findAll() {
+        List<GenreDTO> genres = service.findAll();
         return ResponseEntity.ok().body(genres);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Optional<Genre>> findById(@PathVariable Long id) {
-        Optional<Genre> genre = service.findById(id);
+    public ResponseEntity<GenreDTO> findById(@PathVariable Long id) {
+        GenreDTO genre = service.findById(id);
         return ResponseEntity.ok().body(genre);
     }
 
     @PostMapping
-    public ResponseEntity<Genre> insert(@Valid @RequestBody Genre obj) {
+    public ResponseEntity<GenreDTO> insert(@Valid @RequestBody GenreDTO obj) {
         obj = service.insert(obj);
         return ResponseEntity.status(HttpStatus.CREATED).body(obj);
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Genre> update(@PathVariable Long id, @RequestBody Genre obj) {
+    public ResponseEntity<GenreDTO> update(@PathVariable Long id, @RequestBody GenreDTO obj) {
         obj = service.update(id, obj);
         return ResponseEntity.ok().body(obj);
     }
