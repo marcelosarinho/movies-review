@@ -1,6 +1,8 @@
 package com.marcelosarinho.moviereview.service;
 
+import com.marcelosarinho.moviereview.dto.user.UserDTO;
 import com.marcelosarinho.moviereview.entity.User;
+import com.marcelosarinho.moviereview.mapper.UserMapper;
 import com.marcelosarinho.moviereview.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,8 +19,11 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public List<User> findAll() {
-        return repository.findAll();
+    @Autowired
+    private UserMapper mapper;
+
+    public List<UserDTO> findAll() {
+        return mapper.toUserDTOList(repository.findAll());
     }
 
     public Optional<User> findById(Long id) {

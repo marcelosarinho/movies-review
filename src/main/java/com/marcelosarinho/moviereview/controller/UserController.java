@@ -1,5 +1,6 @@
 package com.marcelosarinho.moviereview.controller;
 
+import com.marcelosarinho.moviereview.dto.user.UserDTO;
 import com.marcelosarinho.moviereview.entity.Review;
 import com.marcelosarinho.moviereview.entity.User;
 import com.marcelosarinho.moviereview.entity.Watchlist;
@@ -11,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,8 +29,8 @@ public class UserController {
     private WatchlistService watchlistService;
 
     @GetMapping
-    public ResponseEntity<List<User>> findAll() {
-        List<User> users = service.findAll();
+    public ResponseEntity<List<UserDTO>> findAll() {
+        List<UserDTO> users = service.findAll();
         return ResponseEntity.ok().body(users);
     }
 
