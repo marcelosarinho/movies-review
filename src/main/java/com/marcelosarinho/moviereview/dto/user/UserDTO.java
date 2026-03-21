@@ -11,11 +11,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UserDTO {
     private Long id;
-
-    @NotBlank(message = "Nome é obrigatório!")
     private String name;
-
-    @Email(message = "Email deve ter formato válido!")
-    @NotBlank(message = "Email é obrigatório!")
     private String email;
 }
