@@ -47,11 +47,11 @@ public class Watchlist {
         this.updatedAt = updatedAt;
     }
 
-    private Interest getInterest() {
+    public Interest getInterest() {
         return Interest.valueOf(interest);
     }
 
-    private void setInterest(Interest interest) {
+    public void setInterest(Interest interest) {
         if (interest != null) {
             this.interest = interest.getCode();
         }

@@ -45,6 +45,7 @@ public class UserController {
     @GetMapping(value = "/{id}/watchlists")
     public ResponseEntity<List<WatchlistDTO>> findWatchlists(@PathVariable Long id) {
         List<WatchlistDTO> watchlists = watchlistService.findByUserId(id);
+        System.out.println(watchlists);
         return ResponseEntity.ok().body(watchlists);
     }
 
