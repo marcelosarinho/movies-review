@@ -23,7 +23,7 @@ public class GenreService {
     }
 
     public GenreDTO findById(Long id) {
-        Genre genre = repository.findById(id).orElseThrow(() -> new RuntimeException("Erro ao encontrar gênero"));
+        Genre genre = repository.findById(id).orElseThrow(() -> new RuntimeException("Gênero não encontrado!"));
         return mapper.toGenreDTO(genre);
     }
 

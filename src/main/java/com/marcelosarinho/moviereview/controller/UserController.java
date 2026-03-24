@@ -1,5 +1,6 @@
 package com.marcelosarinho.moviereview.controller;
 
+import com.marcelosarinho.moviereview.dto.user.UserCreateDTO;
 import com.marcelosarinho.moviereview.dto.user.UserDTO;
 import com.marcelosarinho.moviereview.entity.Review;
 import com.marcelosarinho.moviereview.entity.User;
@@ -47,15 +48,15 @@ public class UserController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Optional<User>> findById(@PathVariable Long id) {
-        Optional<User> user = service.findById(id);
+    public ResponseEntity<UserDTO> findById(@PathVariable Long id) {
+        UserDTO user = service.findById(id);
         return ResponseEntity.ok().body(user);
     }
 
     @PostMapping
-    public ResponseEntity<User> insert(@Valid @RequestBody User obj) {
-        obj = service.insert(obj);
-        return ResponseEntity.status(HttpStatus.CREATED).body(obj);
+    public ResponseEntity<UserDTO> insert(@Valid @RequestBody UserCreateDTO obj) {
+        UserDTO user = service.insert(obj);
+        return ResponseEntity.status(HttpStatus.CREATED).body(user);
     }
 
     @PutMapping(value = "/{id}")

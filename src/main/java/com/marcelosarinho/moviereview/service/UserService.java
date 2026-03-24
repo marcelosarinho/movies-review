@@ -1,5 +1,6 @@
 package com.marcelosarinho.moviereview.service;
 
+import com.marcelosarinho.moviereview.dto.user.UserCreateDTO;
 import com.marcelosarinho.moviereview.dto.user.UserDTO;
 import com.marcelosarinho.moviereview.entity.User;
 import com.marcelosarinho.moviereview.mapper.UserMapper;
@@ -26,14 +27,16 @@ public class UserService {
         return mapper.toUserDTOList(repository.findAll());
     }
 
-    public Optional<User> findById(Long id) {
-        return repository.findById(id);
+    public UserDTO findById(Long id) {
+        User user = repository.findById(id).orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
+        return mapper.toUserDTO(user);
     }
 
-    public User insert(User obj) {
-        obj.setPassword(passwordEncoder.encode(obj.getPassword()));
-
-        return repository.save(obj);
+    public UserDTO insert(UserCreateDTO obj) {
+        User entity = mapper.toUserEntity(obj);
+        entity.setPassword(passwordEncoder.encode(obj.getPassword()));
+        entity = repository.save(entity);
+        return mapper.toUserDTO(entity);
     }
 
     public User update(Long id, User obj) {
