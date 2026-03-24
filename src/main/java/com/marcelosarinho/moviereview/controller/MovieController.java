@@ -1,5 +1,6 @@
 package com.marcelosarinho.moviereview.controller;
 
+import com.marcelosarinho.moviereview.dto.review.ReviewDTO;
 import com.marcelosarinho.moviereview.entity.Movie;
 import com.marcelosarinho.moviereview.entity.Review;
 import com.marcelosarinho.moviereview.service.MovieService;
@@ -28,8 +29,8 @@ public class MovieController {
     }
 
     @GetMapping(value = "/{id}/reviews")
-    public ResponseEntity<List<Review>> findByMovie(@PathVariable Long id) {
-        List<Review> reviews = reviewService.findByMovieId(id);
+    public ResponseEntity<List<ReviewDTO>> findByMovie(@PathVariable Long id) {
+        List<ReviewDTO> reviews = reviewService.findByMovieId(id);
         return ResponseEntity.ok().body(reviews);
     }
 

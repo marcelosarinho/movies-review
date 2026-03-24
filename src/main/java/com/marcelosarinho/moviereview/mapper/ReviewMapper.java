@@ -12,6 +12,7 @@ import java.util.List;
 public interface ReviewMapper {
     @Mapping(source = "user.name", target = "username")
     ReviewDTO toReviewDTO(Review review);
+
     Review toReviewEntity(ReviewCreateDTO reviewCreateDTO);
     List<ReviewDTO> toReviewDTOList(List<Review> reviews);
 }

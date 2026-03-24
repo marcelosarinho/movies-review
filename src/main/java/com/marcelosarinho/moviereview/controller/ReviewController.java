@@ -1,5 +1,7 @@
 package com.marcelosarinho.moviereview.controller;
 
+import com.marcelosarinho.moviereview.dto.review.ReviewCreateDTO;
+import com.marcelosarinho.moviereview.dto.review.ReviewDTO;
 import com.marcelosarinho.moviereview.entity.Review;
 import com.marcelosarinho.moviereview.service.ReviewService;
 import jakarta.validation.Valid;
@@ -18,27 +20,27 @@ public class ReviewController {
     private ReviewService service;
 
     @GetMapping
-    public ResponseEntity<List<Review>> findAll() {
-        List<Review> Reviews = service.findAll();
+    public ResponseEntity<List<ReviewDTO>> findAll() {
+        List<ReviewDTO> Reviews = service.findAll();
         return ResponseEntity.ok().body(Reviews);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Optional<Review>> findById(@PathVariable Long id) {
-        Optional<Review> Review = service.findById(id);
+    public ResponseEntity<ReviewDTO> findById(@PathVariable Long id) {
+        ReviewDTO Review = service.findById(id);
         return ResponseEntity.ok().body(Review);
     }
 
     @PostMapping
-    public ResponseEntity<Review> insert(@Valid @RequestBody Review obj) {
-        obj = service.insert(obj);
-        return ResponseEntity.status(HttpStatus.CREATED).body(obj);
+    public ResponseEntity<ReviewDTO> insert(@Valid @RequestBody ReviewCreateDTO obj) {
+        ReviewDTO review = service.insert(obj);
+        return ResponseEntity.status(HttpStatus.CREATED).body(review);
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Review> update(@PathVariable Long id, @RequestBody Review obj) {
-        obj = service.update(id, obj);
-        return ResponseEntity.ok().body(obj);
+    public ResponseEntity<ReviewDTO> update(@PathVariable Long id, @RequestBody ReviewCreateDTO obj) {
+        ReviewDTO review = service.update(id, obj);
+        return ResponseEntity.ok().body(review);
     }
 
     @DeleteMapping(value = "/{id}")

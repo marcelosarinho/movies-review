@@ -1,9 +1,9 @@
 package com.marcelosarinho.moviereview.service;
 
+import com.marcelosarinho.moviereview.dto.review.ReviewCreateDTO;
 import com.marcelosarinho.moviereview.dto.review.ReviewDTO;
 import com.marcelosarinho.moviereview.entity.Review;
 import com.marcelosarinho.moviereview.mapper.ReviewMapper;
-import com.marcelosarinho.moviereview.repository.ReviewRepository;
 import com.marcelosarinho.moviereview.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,37 +19,39 @@ public class ReviewService {
     @Autowired
     private ReviewMapper mapper;
 
-    public List<Review> findAll() {
-        return repository.findAll();
+    public List<ReviewDTO> findAll() {
+        return mapper.toReviewDTOList(repository.findAll());
     }
 
-    public Optional<Review> findById(Long id) {
-        return repository.findById(id);
+    public ReviewDTO findById(Long id) {
+        Review review = repository.findById(id).orElseThrow(() -> new RuntimeException("Crítica não encontrada!"));
+        return mapper.toReviewDTO(review);
     }
 
     public List<ReviewDTO> findByUserId(Long id) {
         return mapper.toReviewDTOList(repository.findByUserId(id));
     }
 
-    public List<Review> findByMovieId(Long id) {
-        return repository.findByMovieId(id);
+    public List<ReviewDTO> findByMovieId(Long id) {
+        return mapper.toReviewDTOList(repository.findByMovieId(id));
     }
 
-    public Review insert(Review obj) {
-        return repository.save(obj);
+    public ReviewDTO insert(ReviewCreateDTO obj) {
+        Review entity = mapper.toReviewEntity(obj);
+        return mapper.toReviewDTO(repository.save(entity));
     }
 
-    public Review update(Long id, Review obj) {
+    public ReviewDTO update(Long id, ReviewCreateDTO obj) {
         Review entity = repository.getReferenceById(id);
         updateData(entity, obj);
-        return repository.save(entity);
+        return mapper.toReviewDTO(repository.save(entity));
     }
 
     public void delete(Long id) {
         repository.deleteById(id);
     }
 
-    private void updateData(Review entity, Review review) {
+    private void updateData(Review entity, ReviewCreateDTO review) {
         entity.setRating(review.getRating());
         entity.setComment(review.getComment());
     }

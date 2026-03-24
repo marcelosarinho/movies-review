@@ -35,15 +35,13 @@ public class UserService {
     public UserDTO insert(UserCreateDTO obj) {
         User entity = mapper.toUserEntity(obj);
         entity.setPassword(passwordEncoder.encode(obj.getPassword()));
-        entity = repository.save(entity);
-        return mapper.toUserDTO(entity);
+        return mapper.toUserDTO(repository.save(entity));
     }
 
     public UserDTO update(Long id, UserCreateDTO obj) {
         User entity = repository.getReferenceById(id);
         updateData(entity, obj);
-        repository.save(entity);
-        return mapper.toUserDTO(entity);
+        return mapper.toUserDTO(repository.save(entity));
     }
 
     public void delete(Long id) {

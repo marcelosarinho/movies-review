@@ -4,8 +4,6 @@ import com.marcelosarinho.moviereview.dto.review.ReviewDTO;
 import com.marcelosarinho.moviereview.dto.user.UserCreateDTO;
 import com.marcelosarinho.moviereview.dto.user.UserDTO;
 import com.marcelosarinho.moviereview.dto.watchlist.WatchlistDTO;
-import com.marcelosarinho.moviereview.entity.Review;
-import com.marcelosarinho.moviereview.entity.Watchlist;
 import com.marcelosarinho.moviereview.service.ReviewService;
 import com.marcelosarinho.moviereview.service.UserService;
 import com.marcelosarinho.moviereview.service.WatchlistService;
@@ -16,7 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/users")
