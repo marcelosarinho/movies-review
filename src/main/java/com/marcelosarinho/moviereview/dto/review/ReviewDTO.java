@@ -1,5 +1,6 @@
 package com.marcelosarinho.moviereview.dto.review;
 
+import com.marcelosarinho.moviereview.dto.movie.MovieDTO;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
@@ -16,6 +17,6 @@ public class ReviewDTO {
     private Integer rating;
     private String comment;
     private String username;
-    private Long movieId;
+    private MovieDTO movie;
     private Instant updatedAt;
 }

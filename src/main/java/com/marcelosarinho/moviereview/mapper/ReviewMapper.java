@@ -8,10 +8,9 @@ import org.mapstruct.Mapping;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = MovieMapper.class)
 public interface ReviewMapper {
     @Mapping(source = "user.name", target = "username")
-    @Mapping(source = "movie.id", target = "movieId")
     ReviewDTO toReviewDTO(Review review);
     Review toReviewEntity(ReviewCreateDTO reviewCreateDTO);
     List<ReviewDTO> toReviewDTOList(List<Review> reviews);

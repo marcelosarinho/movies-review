@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Set;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -14,5 +14,5 @@ public class MovieDTO {
     private Long id;
     private String title;
     private Integer releaseYear;
-    private Set<Genre> genres;
+    private List<String> genres;
 }
