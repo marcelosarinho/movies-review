@@ -3,6 +3,7 @@ package com.marcelosarinho.moviereview.controller;
 import com.marcelosarinho.moviereview.dto.review.ReviewDTO;
 import com.marcelosarinho.moviereview.dto.user.UserCreateDTO;
 import com.marcelosarinho.moviereview.dto.user.UserDTO;
+import com.marcelosarinho.moviereview.dto.watchlist.WatchlistDTO;
 import com.marcelosarinho.moviereview.entity.Review;
 import com.marcelosarinho.moviereview.entity.Watchlist;
 import com.marcelosarinho.moviereview.service.ReviewService;
@@ -42,8 +43,8 @@ public class UserController {
     }
 
     @GetMapping(value = "/{id}/watchlists")
-    public ResponseEntity<List<Watchlist>> findWatchlists(@PathVariable Long id) {
-        List<Watchlist> watchlists = watchlistService.findByUserId(id);
+    public ResponseEntity<List<WatchlistDTO>> findWatchlists(@PathVariable Long id) {
+        List<WatchlistDTO> watchlists = watchlistService.findByUserId(id);
         return ResponseEntity.ok().body(watchlists);
     }
 
