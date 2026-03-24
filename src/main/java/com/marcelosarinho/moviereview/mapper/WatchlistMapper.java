@@ -6,9 +6,9 @@ import org.mapstruct.Mapper;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = MovieMapper.class)
 public interface WatchlistMapper {
     WatchlistDTO toWatchlistDTO(Watchlist watchlist);
-    Watchlist toWatchlistEntity(WatchlistDTO watchlistDTO);
+//    Watchlist toWatchlistEntity(WatchlistDTO watchlistDTO);
     List<WatchlistDTO> toWatchlistDTOList(List<Watchlist> watchlists);
 }
