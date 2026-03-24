@@ -39,17 +39,18 @@ public class UserService {
         return mapper.toUserDTO(entity);
     }
 
-    public User update(Long id, User obj) {
+    public UserDTO update(Long id, UserCreateDTO obj) {
         User entity = repository.getReferenceById(id);
         updateData(entity, obj);
-        return repository.save(entity);
+        repository.save(entity);
+        return mapper.toUserDTO(entity);
     }
 
     public void delete(Long id) {
         repository.deleteById(id);
     }
 
-    private void updateData(User entity, User user) {
+    private void updateData(User entity, UserCreateDTO user) {
         entity.setName(user.getName());
         entity.setEmail(user.getEmail());
     }

@@ -3,7 +3,6 @@ package com.marcelosarinho.moviereview.controller;
 import com.marcelosarinho.moviereview.dto.user.UserCreateDTO;
 import com.marcelosarinho.moviereview.dto.user.UserDTO;
 import com.marcelosarinho.moviereview.entity.Review;
-import com.marcelosarinho.moviereview.entity.User;
 import com.marcelosarinho.moviereview.entity.Watchlist;
 import com.marcelosarinho.moviereview.service.ReviewService;
 import com.marcelosarinho.moviereview.service.UserService;
@@ -60,9 +59,9 @@ public class UserController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User obj) {
-        obj = service.update(id, obj);
-        return ResponseEntity.ok().body(obj);
+    public ResponseEntity<UserDTO> update(@PathVariable Long id, @RequestBody UserCreateDTO obj) {
+        UserDTO user = service.update(id, obj);
+        return ResponseEntity.ok().body(user);
     }
 
     @DeleteMapping(value = "/{id}")
