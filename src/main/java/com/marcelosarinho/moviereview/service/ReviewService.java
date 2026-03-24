@@ -1,6 +1,8 @@
 package com.marcelosarinho.moviereview.service;
 
+import com.marcelosarinho.moviereview.dto.review.ReviewDTO;
 import com.marcelosarinho.moviereview.entity.Review;
+import com.marcelosarinho.moviereview.mapper.ReviewMapper;
 import com.marcelosarinho.moviereview.repository.ReviewRepository;
 import com.marcelosarinho.moviereview.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,9 @@ public class ReviewService {
     @Autowired
     private ReviewRepository repository;
 
+    @Autowired
+    private ReviewMapper mapper;
+
     public List<Review> findAll() {
         return repository.findAll();
     }
@@ -22,8 +27,8 @@ public class ReviewService {
         return repository.findById(id);
     }
 
-    public List<Review> findByUserId(Long id) {
-        return repository.findByUserId(id);
+    public List<ReviewDTO> findByUserId(Long id) {
+        return mapper.toReviewDTOList(repository.findByUserId(id));
     }
 
     public List<Review> findByMovieId(Long id) {
